@@ -126,8 +126,8 @@
 oes_plot <- function(prep,
                      font = "sans",
                      device = "pdf",
-                     treatment_fill = "#F2C446",
-                     control_fill = "#2E9AC4",
+                     treatment_fill = "#D83A3A",
+                     control_fill = "#247f9b",
                      digits = 3,
                      report_stars = TRUE,
                      xlab,
@@ -196,10 +196,10 @@ oes_plot <- function(prep,
       fill = .data$response,
       label = .data$labels
     ) +
-    geom_col(col = "black") +
     geom_hline(
-      aes(yintercept = .data$estimate[1]), lty = 2
+      aes(yintercept = .data$estimate[1]), lty = 2, color = "#808080"
     ) +
+    geom_col() +
     geom_errorbar(width = 0.05) +
     scale_fill_manual(values = c(control_fill, treatment_fill)) +
     geom_label(y = prep$hi.ci,
@@ -221,7 +221,8 @@ oes_plot <- function(prep,
               device = device) +
     theme(
       legend.position = "none",
-      plot.title = element_text(hjust = 0.5)
+      plot.title = element_text(hjust = 0.5),
+      text = element_text(color = "black")
     ) +
     guides(fill = "none")
   if(report_stars == TRUE){
